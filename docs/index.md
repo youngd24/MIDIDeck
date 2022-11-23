@@ -1,6 +1,6 @@
 # MIDI Deck
 
-![MIDIDeck_Image](/assets/arduino_pro_micro_pinout.png)
+![MIDIDeck_Image](/assets/obs_remote.png)
 
 What is it? an Arduino Pro Micro MIDI controller, connected via USB, that can send MIDI messages to a host on button press. The idea is to automate apps on the host, in my primary use case, OBS. Press button, things happen.
 
