@@ -80,7 +80,6 @@ void noteOn(byte channel, byte pitch, byte velocity) {
   MidiUSB.sendMIDI(noteOn);
 }
 
-
 // ****************************************************************************
 // NAME        : noteOdd
 // DESCRIPTION : Send MIDI note off message
@@ -229,6 +228,5 @@ void loop() {
     delay(100);
   }  
 }
-
 
 // never get here
