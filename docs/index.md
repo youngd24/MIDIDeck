@@ -1,5 +1,7 @@
 # MIDI Deck
 
+![MIDIDeck_Image](/assets/arduino_pro_micro_pinout.png)
+
 What is it? an Arduino Pro Micro MIDI controller, connected via USB, that can send MIDI messages to a host on button press. The idea is to automate apps on the host, in my primary use case, OBS. Press button, things happen.
 
 The design is as dead simple as possible so it's easy to build, total cost is under $20 (likely less).
@@ -48,3 +50,5 @@ I like using PlatformIO (pio) with Visual Studio Code (vscode), the goal was to 
 * Build & upload
 
 The PlatformIO project includes the needed board (Arduino Leonardo) and the MIDIUSB library (version 1.0.5 at this time).
+
+I believe the Arduino IDE could be used to build this code, I haven't tried it, you're on your own for that.	
