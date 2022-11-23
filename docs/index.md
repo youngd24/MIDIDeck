@@ -1,37 +1,28 @@
-## Welcome to GitHub Pages
+# MIDI Deck
 
-You can use the [editor on GitHub](https://github.com/youngd24/ThinClient/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+What is it? an Arduino Pro Micro MIDI controller, connected via USB, that can send MIDI messages to a host on button press. The idea is to automate apps on the host, in my primary use case, OBS. Press button, things happen.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+The design is as dead simple as possible so it's easy to build, total cost is under $20 (likely less).
 
-### Markdown
+## Why?
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+There were 2 main drivers I had for building this, the first is when I'm recording for YouTube videos. I use OBS with several cameras and other inputs and rather than flipping between them in editing I switch while recording. Why? I hate editing and this saves time there.
 
-```markdown
-Syntax highlighted code block
+Second is for streaming, the keyboad combos I ended up using in OBS were awkward to use and I was always forgetting them. There's a reason the StreamDeck exists, this serves the same function.
 
-# Header 1
-## Header 2
-### Header 3
+## Goals
 
-- Bulleted
-- List
+For the initial version, I had the following objectives:
 
-1. Numbered
-2. List
+* All command comms use MIDI (rather than HID)
+* Prefer an Arduino platform
+* Be as simple as possible to build
+* Low cost
 
-**Bold** and _Italic_ and `Code` text
+### MIDI
 
-[Link](url) and ![Image](src)
-```
+So why MIDI and not HID? Well, mainly because I have some other projects that I want to use MIDI on an Arduino for, this was the chance to have a super simple project to learn how to do it. My learning process tends to be additive and cumulative, I start with simple ideas, learn it thoroughly, then grow and learn more.
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+### Arduino
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/youngd24/ThinClient/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+Why Arduino and not a, say, ESP32 or even a Raspberry Pi? The Pi could certainly do this but as of this writing, late 2022, they're still difficult to find and tend to be costly due to the [chip chortage](https://www.youtube.com/watch?v=vGjQcPUfBdM).
