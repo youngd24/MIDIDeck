@@ -1,9 +1,24 @@
-/*
- * Adruino Pro Micro MIDI Prototyper
+/******************************************************************************
+ * 
+ * Adruino Pro Micro MIDI Controller
  *
  * (C) 2022 Darren Young
  * 
- */
+ * https://github.com/youngd24/MIDIDeck
+ * 
+ ******************************************************************************
+ *
+ * TODO:
+ * 
+ * Refactor all chunks of 1-8 stuff
+ * Change delay to be a constant or #define
+ * Add dev and release envs
+ * Move debug prints to only happen in the dev env
+ * Move functions into their own cpp file
+ * Refactor main loop to act on an array of buttons (access by index)
+ * Test removing pitchToNote.h
+ * 
+ *****************************************************************************/
 
 // ----------------------------------------------------------------------------
 // Program configuration
@@ -44,31 +59,65 @@ int button8state;
 // Functions
 // ----------------------------------------------------------------------------
 
-// First parameter is the event type (0x09 = note on, 0x08 = note off).
-// Second parameter is note-on/note-off, combined with the channel.
-// Channel can be anything between 0-15. Typically reported to the user as 1-16.
-// Third parameter is the note number (48 = middle C).
-// Fourth parameter is the velocity (64 = normal, 127 = fastest).
+// ****************************************************************************
+// NAME        : noteOn
+// DESCRIPTION : Send MIDI note on message
+// ARGUMENTS   : byte channel (1-16)
+//             : byte pitch (note number)
+//             : byte velocity (1-127)
+// RETURN      : void
+// STATUS      : Stable
+// NOTES       : None
+// ****************************************************************************
 void noteOn(byte channel, byte pitch, byte velocity) {
+
+  // First parameter is the event type (0x09 = note on, 0x08 = note off).
+  // Second parameter is note-on/note-off, combined with the channel.
+  // Channel can be anything between 0-15. Typically reported to the user as 1-16.
+  // Third parameter is the note number (48 = middle C).
+  // Fourth parameter is the velocity (64 = normal, 127 = fastest).
   midiEventPacket_t noteOn = {0x09, 0x90 | channel, pitch, velocity};
   MidiUSB.sendMIDI(noteOn);
 }
 
-// First parameter is the event type (0x09 = note on, 0x08 = note off).
-// Second parameter is note-on/note-off, combined with the channel.
-// Channel can be anything between 0-15. Typically reported to the user as 1-16.
-// Third parameter is the note number (48 = middle C).
-// Fourth parameter is the velocity (64 = normal, 127 = fastest).
+
+// ****************************************************************************
+// NAME        : noteOdd
+// DESCRIPTION : Send MIDI note off message
+// ARGUMENTS   : byte channel (1-16)
+//             : byte pitch (note number)
+//             : byte velocity (1-127)
+// RETURN      : void
+// STATUS      : Stable
+// NOTES       : None
+// ****************************************************************************
 void noteOff(byte channel, byte pitch, byte velocity) {
+
+  // First parameter is the event type (0x09 = note on, 0x08 = note off).
+  // Second parameter is note-on/note-off, combined with the channel.
+  // Channel can be anything between 0-15. Typically reported to the user as 1-16.
+  // Third parameter is the note number (48 = middle C).
+  // Fourth parameter is the velocity (64 = normal, 127 = fastest).
   midiEventPacket_t noteOff = {0x08, 0x80 | channel, pitch, velocity};
   MidiUSB.sendMIDI(noteOff);
 }
 
-// First parameter is the event type (0x0B = control change).
-// Second parameter is the event type, combined with the channel.
-// Third parameter is the control number number (0-119).
-// Fourth parameter is the control value (0-127).
+// ****************************************************************************
+// NAME        : controlChange
+// DESCRIPTION : Change sound control
+// ARGUMENTS   : byte channel
+//             : byte control
+//             : byte value
+// RETURN      : void
+// STATUS      : Stable
+// NOTES       : None
+// ****************************************************************************
 void controlChange(byte channel, byte control, byte value) {
+
+  // First parameter is the event type (0x0B = control change).
+  // Second parameter is the event type, combined with the channel.
+  // Third parameter is the control number number (0-119).
+  // Fourth parameter is the control value (0-127).
   midiEventPacket_t event = {0x0B, 0xB0 | channel, control, value};
   MidiUSB.sendMIDI(event);
 }
@@ -108,113 +157,76 @@ void loop() {
   button7state = digitalRead(button7pin);
   button8state = digitalRead(button8pin);  
 
-  //
+  // Button 1
   if (button1state == LOW) {
     Serial.println("BTN1: PRESSED");
     Serial.println("Sending note on");
     noteOn(0, 48, 64);   // Channel 0, middle C, normal velocity
     MidiUSB.flush();
-    delay(500);
-
-    Serial.println("Sending note off");
-    noteOff(0, 48, 64);  // Channel 0, middle C, normal velocity
-    MidiUSB.flush();
-    delay(500);
+    delay(100);
   }
 
-  //
+  // Button 2
   if (button2state == LOW) {
     Serial.println("BTN2: PRESSED");
     Serial.println("Sending note on");
     noteOn(0, 50, 64);   // Channel 0, middle C, normal velocity
     MidiUSB.flush();
-    delay(500);
-
-    Serial.println("Sending note off");
-    noteOff(0, 50, 64);  // Channel 0, middle C, normal velocity
-    MidiUSB.flush();
-    delay(500);
+    delay(100);
   }
 
-  //
+  // Button 3
   if (button3state == LOW) {
     Serial.println("BTN3: PRESSED");
     Serial.println("Sending note on");
     noteOn(0, 52, 64);   // Channel 0, middle C, normal velocity
     MidiUSB.flush();
-    delay(500);
-
-    Serial.println("Sending note off");
-    noteOff(0, 52, 64);  // Channel 0, middle C, normal velocity
-    MidiUSB.flush();
-    delay(500);
+    delay(100);
   }
-  //
+
+  // Button 4
   if (button4state == LOW) {
     Serial.println("BTN4: PRESSED");
     Serial.println("Sending note on");
     noteOn(0, 54, 64);   // Channel 0, middle C, normal velocity
     MidiUSB.flush();
-    delay(500);
-
-    Serial.println("Sending note off");
-    noteOff(0, 54, 64);  // Channel 0, middle C, normal velocity
-    MidiUSB.flush();
-    delay(500);
+    delay(100);
   }
 
+  // Button 5
   if (button5state == LOW) {
     Serial.println("BTN5: PRESSED");
     Serial.println("Sending note on");
     noteOn(0, 56, 64);   // Channel 0, middle C, normal velocity
     MidiUSB.flush();
-    delay(500);
-
-    Serial.println("Sending note off");
-    noteOff(0, 56, 64);  // Channel 0, middle C, normal velocity
-    MidiUSB.flush();
-    delay(500);
+    delay(100);
   }
 
-  //
+  // Button 6
   if (button6state == LOW) {
     Serial.println("BTN6: PRESSED");
     Serial.println("Sending note on");
     noteOn(0, 58, 64);   // Channel 0, middle C, normal velocity
     MidiUSB.flush();
-    delay(500);
-
-    Serial.println("Sending note off");
-    noteOff(0, 58, 64);  // Channel 0, middle C, normal velocity
-    MidiUSB.flush();
-    delay(500);
+    delay(100);
   }
 
-  //
+  // Button 7
   if (button7state == LOW) {
     Serial.println("BTN7: PRESSED");
     Serial.println("Sending note on");
     noteOn(0, 60, 64);   // Channel 0, middle C, normal velocity
     MidiUSB.flush();
-    delay(500);
-
-    Serial.println("Sending note off");
-    noteOff(0, 60, 64);  // Channel 0, middle C, normal velocity
-    MidiUSB.flush();
-    delay(500);
+    delay(100);
   }
-  //
+
+  // Button 8
   if (button8state == LOW) {
     Serial.println("BTN8: PRESSED");
     Serial.println("Sending note on");
     noteOn(0, 62, 64);   // Channel 0, middle C, normal velocity
     MidiUSB.flush();
-    delay(500);
-
-    Serial.println("Sending note off");
-    noteOff(0, 62, 64);  // Channel 0, middle C, normal velocity
-    MidiUSB.flush();
-    delay(500);
+    delay(100);
   }  
 }
 
