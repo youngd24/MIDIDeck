@@ -55,13 +55,13 @@ I believe the Arduino IDE could be used to build this code, I haven't tried it, 
 
 ## Hardware
 
-Materials needed:
+### Materials Needed
 
 * [Arduino Pro Micro](https://www.amazon.com/HiLetgo-Atmega32U4-Bootloadered-Development-Microcontroller/dp/B01MTU9GOB/)
 * [Small breadboard](https://www.amazon.com/DEYUE-breadboard-Set-Prototype-Board/dp/B07LFD4LT6/)
 * [6x6x9mm Momentary Push Buttons](https://www.amazon.com/dp/B07CGCPGPT)
 * [Hook up wire](https://www.amazon.com/TUOFENG-Hookup-Wires-6-Different-Colored/dp/B07TX6BX47/)
 
-Wiring diagram
+### Wiring Diagram
 
 ![MK1_Breadboard_Image](/assets/breadboard_mk1.png)
