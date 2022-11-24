@@ -69,3 +69,14 @@ Acquire the following, there's not much needed:
 Hook it all up as follows:
 
 ![MK1_Breadboard_Image](/assets/breadboard_mk1.png)
+
+## OBS Setup
+
+Once you're sure the hardware is working, and it sending the correct MIDI commands, download the [obs-midi-mg plugin](https://obsproject.com/forum/resources/obs-midi-mg.1570/). Note that I've only tested this on a Mac, not Windows or Linux, on those platforms you're on your own.
+
+Once installed, launch OBS and bring up the plugin configuration menu. Add the 8 button, and using the "Listen Once" action press the button desired on the OBS Remote to bind the hardware button to the plugin. I changed the velocity to be any valid value, rather than what's in the code, it doesn't affect operation, all that's needed is the correct noteOn value.
+
+My setup:
+
+![obs_midi_commands](/assets/obs_midi_commands.png)
+
