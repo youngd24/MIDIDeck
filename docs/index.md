@@ -51,4 +51,17 @@ I like using PlatformIO (pio) with Visual Studio Code (vscode), the goal was to 
 
 The PlatformIO project includes the needed board (Arduino Leonardo) and the MIDIUSB library (version 1.0.5 at this time).
 
-I believe the Arduino IDE could be used to build this code, I haven't tried it, you're on your own for that.	
+I believe the Arduino IDE could be used to build this code, I haven't tried it, you're on your own for that.
+
+## Hardware
+
+Materials needed:
+
+* [Arduino Pro Micro](https://www.amazon.com/HiLetgo-Atmega32U4-Bootloadered-Development-Microcontroller/dp/B01MTU9GOB/)
+* [Small breadboard](https://www.amazon.com/DEYUE-breadboard-Set-Prototype-Board/dp/B07LFD4LT6/)
+* [6x6x9mm Momentary Push Buttons](https://www.amazon.com/dp/B07CGCPGPT)
+* [Hook up wire](https://www.amazon.com/TUOFENG-Hookup-Wires-6-Different-Colored/dp/B07TX6BX47/)
+
+Wiring diagram
+
+![MK1_Breadboard_Image](/assets/breadboard_mk1.png)
