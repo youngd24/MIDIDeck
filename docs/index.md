@@ -68,7 +68,7 @@ Acquire the following, there's not much needed:
 
 Hook it all up as follows:
 
-![MK1_Breadboard_Image](/assets/breadboard_mk1.png)
+![MK1_Breadboard_Image](/assets/MIDIDesk_v0.1_bb.png)
 
 ## OBS Setup
 
@@ -80,3 +80,6 @@ My setup:
 
 ![obs_midi_commands](/assets/obs_midi_commands.png)
 
+## Companion Video
+
+This page goes with my YouTube video on how to build and use this [here](https://www.youtube.com).
