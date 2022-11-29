@@ -6,3 +6,5 @@ What is it? an Arduino Pro Micro MIDI controller, connected via USB, that can se
 The design is as dead simple as possible so it's easy to build, total cost is under $20 (likely less).
 
 Full docs [here](https://youngd24.github.io/MIDIDeck/)
+
+A YouTube video that describes this is [here](https://youtu.be/XT2bshyCDlI)
