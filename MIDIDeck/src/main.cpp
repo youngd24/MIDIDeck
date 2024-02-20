@@ -2,10 +2,19 @@
  * 
  * Adruino Pro Micro MIDI Controller
  *
- * (C) 2022 Darren Young
+ * (C) 2022-2024 Darren Young [youngd24@gmail.com]
  * 
  * https://github.com/youngd24/MIDIDeck
  * 
+ ******************************************************************************
+ * 
+ * CHANGELOG:
+ * 
+ * 19-Feb-2024
+ * -----------
+ *   - Adjusted for XL 12 button version
+ *   - Increased delay to 250 (made it a const)
+ *
  ******************************************************************************
  *
  * TODO:
@@ -33,16 +42,21 @@
 
 // Button Arduino pin assignments, based on what you did on the hardware
 // On the prototype board these are laid out as:
-//   row[0] = 1,2,3,4
-//   row[1] = 5,6,7,8
-const int button1pin = 6;
-const int button2pin = 7;
-const int button3pin = 9;
-const int button4pin = 8;
-const int button5pin = 10;
-const int button6pin = 16;
-const int button7pin = 14;
-const int button8pin = 15;
+//   row[0] = 1,2,3,4,5,6
+//   row[1] = 7,8,9,10,11,12
+const int button1pin = 4;
+const int button2pin = 5;
+const int button3pin = 6;
+const int button4pin = 7;
+const int button5pin = 8;
+const int button6pin = 9;
+const int button7pin = 10;
+const int button8pin = 16;
+const int button9pin = 14;
+const int button10pin = 15;
+const int button11pin = 18;
+const int button12pin = 19;
+
 
 // Button state tracking
 int button1state;
@@ -53,6 +67,13 @@ int button5state;
 int button6state;
 int button7state;
 int button8state;
+int button9state;
+int button10state;
+int button11state;
+int button12state;
+
+// Vars
+const int DELAY = 250;
 
 
 // ----------------------------------------------------------------------------
@@ -138,7 +159,12 @@ void setup() {
   pinMode(button5pin, INPUT_PULLUP); 
   pinMode(button6pin, INPUT_PULLUP);
   pinMode(button7pin, INPUT_PULLUP);
-  pinMode(button8pin, INPUT_PULLUP);  
+  pinMode(button8pin, INPUT_PULLUP); 
+  pinMode(button9pin, INPUT_PULLUP);  
+  pinMode(button10pin, INPUT_PULLUP);  
+  pinMode(button11pin, INPUT_PULLUP);  
+  pinMode(button12pin, INPUT_PULLUP);  
+
 }
 
 // ----------------------------------------------------------------------------
@@ -154,79 +180,120 @@ void loop() {
   button5state = digitalRead(button5pin);
   button6state = digitalRead(button6pin);
   button7state = digitalRead(button7pin);
-  button8state = digitalRead(button8pin);  
+  button8state = digitalRead(button8pin); 
+  button9state = digitalRead(button9pin);  
+  button10state = digitalRead(button10pin);  
+  button11state = digitalRead(button11pin);  
+  button12state = digitalRead(button12pin);  
+
 
   // Button 1
   if (button1state == LOW) {
     Serial.println("BTN1: PRESSED");
     Serial.println("Sending note on");
-    noteOn(0, 48, 64);   // Channel 0, middle C, normal velocity
+    noteOn(0, 48, 64);
     MidiUSB.flush();
-    delay(100);
+    delay(DELAY);
   }
 
   // Button 2
   if (button2state == LOW) {
     Serial.println("BTN2: PRESSED");
     Serial.println("Sending note on");
-    noteOn(0, 50, 64);   // Channel 0, middle C, normal velocity
+    noteOn(0, 50, 64);
     MidiUSB.flush();
-    delay(100);
+    delay(DELAY);
   }
 
   // Button 3
   if (button3state == LOW) {
     Serial.println("BTN3: PRESSED");
     Serial.println("Sending note on");
-    noteOn(0, 52, 64);   // Channel 0, middle C, normal velocity
+    noteOn(0, 52, 64);
     MidiUSB.flush();
-    delay(100);
+    delay(DELAY);
   }
 
   // Button 4
   if (button4state == LOW) {
     Serial.println("BTN4: PRESSED");
     Serial.println("Sending note on");
-    noteOn(0, 54, 64);   // Channel 0, middle C, normal velocity
+    noteOn(0, 54, 64);
     MidiUSB.flush();
-    delay(100);
+    delay(DELAY);
   }
 
   // Button 5
   if (button5state == LOW) {
     Serial.println("BTN5: PRESSED");
     Serial.println("Sending note on");
-    noteOn(0, 56, 64);   // Channel 0, middle C, normal velocity
+    noteOn(0, 56, 64);
     MidiUSB.flush();
-    delay(100);
+    delay(DELAY);
   }
 
   // Button 6
   if (button6state == LOW) {
     Serial.println("BTN6: PRESSED");
     Serial.println("Sending note on");
-    noteOn(0, 58, 64);   // Channel 0, middle C, normal velocity
+    noteOn(0, 58, 64);
     MidiUSB.flush();
-    delay(100);
+    delay(DELAY);
   }
 
   // Button 7
   if (button7state == LOW) {
     Serial.println("BTN7: PRESSED");
     Serial.println("Sending note on");
-    noteOn(0, 60, 64);   // Channel 0, middle C, normal velocity
+    noteOn(0, 60, 64);
     MidiUSB.flush();
-    delay(100);
+    delay(DELAY);
   }
 
   // Button 8
   if (button8state == LOW) {
     Serial.println("BTN8: PRESSED");
     Serial.println("Sending note on");
-    noteOn(0, 62, 64);   // Channel 0, middle C, normal velocity
+    noteOn(0, 62, 64);
     MidiUSB.flush();
-    delay(100);
-  }  
+    delay(DELAY);
+  } 
+
+  // Button 9
+  if (button9state == LOW) {
+    Serial.println("BTN9: PRESSED");
+    Serial.println("Sending note on");
+    noteOn(0, 64, 64);
+    MidiUSB.flush();
+    delay(DELAY);
+  }
+
+  // Button 10
+  if (button10state == LOW) {
+    Serial.println("BTN10: PRESSED");
+    Serial.println("Sending note on");
+    noteOn(0, 66, 64);
+    MidiUSB.flush();
+    delay(DELAY);
+  }
+
+  // Button 11
+  if (button11state == LOW) {
+    Serial.println("BTN11: PRESSED");
+    Serial.println("Sending note on");
+    noteOn(0, 68, 64);
+    MidiUSB.flush();
+    delay(DELAY);
+  }
+
+  // Button 12
+  if (button12state == LOW) {
+    Serial.println("BTN12: PRESSED");
+    Serial.println("Sending note on");
+    noteOn(0, 70, 64);
+    MidiUSB.flush();
+    delay(DELAY);
+  }
 }
 
 // never get here
